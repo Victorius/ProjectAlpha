@@ -16,7 +16,7 @@ public class Child {
 	
 	public boolean findMatka(){
 		try{
-			socket= new Socket("localhost",12345);
+			socket= new Socket("192.168.1.3",12345);
 		}catch(IOException e){
 			return false;
 		}
@@ -60,8 +60,10 @@ public class Child {
 	}
 	
 	public void TalkWithMePlease(){
-		this.findMatka();
-		this.TalkWithMatka();		
+		if(this.findMatka())
+			this.TalkWithMatka();
+		else
+			System.out.println("");
 	}
 	public char[] getanswer(BufferedReader bf) throws IOException{
 		char[] result=null;
