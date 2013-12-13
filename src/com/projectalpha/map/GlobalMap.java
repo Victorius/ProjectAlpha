@@ -3,23 +3,27 @@ package com.projectalpha.map;
 import java.awt.Color;
 import java.util.Random;
 
-public class Map {
-	private int width, height;
-	private int[] map;
-	private final int countOfPoints;
+public class GlobalMap {
+	protected int width, height;
+	protected int[] map;
+	protected final int countOfPoints;
+	private Map[] listOfMaps;
 	public void randomGenerator(){
 		Random random = new Random();
 		for(int i=0;i<countOfPoints;i++){			
 			map[random.nextInt(map.length)] = i;
 		}
 	}
-	
-	public Map(int countOfPoints, int width, int height){
+	public GlobalMap(int countOfPoints){
+		this.countOfPoints=countOfPoints;
+	}
+	public GlobalMap(int countOfPoints, int width, int height){
 		this.countOfPoints=countOfPoints;
 		this.height=height;
 		this.width=width;
 		this.map= new int[width*height];
 		this.randomGenerator();
+		this.listOfMaps = new Map[countOfPoints];
 	}
 	
 
@@ -37,7 +41,7 @@ public class Map {
 	}
 	
 	public static void main(String[] args){
-		Map m = new Map(4, 10,10);
+		GlobalMap m = new GlobalMap(4, 10,10);
 		m.showClassic();
 		
 	}
